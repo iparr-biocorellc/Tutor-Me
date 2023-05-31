@@ -1,0 +1,25 @@
+
+{% load static %}
+
+
+{% block content %}
+<div class="timeslots-container">
+{% for slot in timeslots %}
+<div class = "timeslot">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="delete_avail_id" value="{{ slot.id }}">
+        <button type="submit" class="exit btn-close"></button>
+    </form>
+    <h6> Time Slot #{{ forloop.counter0|add:1 }} </h6>
+    <p class="time"> Start Time: {{ slot.start }}</p>
+    <p class="time"> End Time: {{ slot.end }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<h5>{{ message }}</h5>
+
+{% endblock %}
+
+

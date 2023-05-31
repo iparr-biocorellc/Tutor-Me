@@ -1,0 +1,21 @@
+.login {
+  position: absolute;
+  width: 1000px;
+  height: 800px;
+}
+
+.col-md-7 {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.col-md-4 {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}

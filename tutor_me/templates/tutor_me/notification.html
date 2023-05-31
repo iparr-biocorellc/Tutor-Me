@@ -1,0 +1,18 @@
+
+{% load static %}
+
+{% block content %}
+<div class="timeslots-container">
+{% for notification in notifications %}
+<div class = "timeslot">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="delete_notification_id" value="{{ notification.id }}">
+        <button type="submit" class="exit btn-close"></button>
+    </form>
+    <h6> {{ notification.notification }} </h6>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

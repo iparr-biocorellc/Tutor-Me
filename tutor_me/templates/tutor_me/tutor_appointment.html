@@ -1,0 +1,79 @@
+{% load static %}
+
+<head>
+</head>
+
+{% block content %}
+<h2 class="pb-3">Upcoming Appointments</h2>
+
+    {% for appt in appointments %}
+    <div class="card mb-3">
+        <div class="card-block">
+            <h4 class="card-title">{{ appt.student.first_name}} {{appt.student.last_name}}</h4>
+            <h6 class="card-subtitle text-muted pt-1 pb-3">{{ appt.course.mnemonic}} {{ appt.course.number}}: {{ appt.course.name}}</h6>
+            <p class="card-text p-y-1">{{ appt.note }}</p>
+            <div class="detail">
+                <h6>{{ appt.start.date }} </h6>
+                <h6> {{ appt.start|time }} - {{ appt.end|time }}</h6>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+  <hr>
+
+  <h2 class="pt-3 pb-3">Tutoring Requests</h2>
+ <table class="table table-light table-sm">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Class</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Notes</th>
+            <th colspan="2">Approval?</th>
+        </tr>
+    </thead>
+    <tbody class = "requests">
+        {% comment %} display all requests, not confirmed {% endcomment %}
+            {% for request in requests %}
+                {% if not request.confirmed %}
+                    <tr>
+                        {% comment %} appt info {% endcomment %}
+                        <td>{{ request.student.first_name}} {{request.student.last_name}}</td>
+                        <td>{{ request.course.mnemonic}} {{ request.course.number}} </td>
+                        <td>{{ request.start.date }}</td>
+                        <td>{{ request.start|time }} - {{ request.end|time }}</td>
+                        <td>{{ request.note }}</td>
+                        {% comment %} approval button {% endcomment %}
+                        <td class="text-center" style="vertical-align: middle;">
+                        <div style="display: inline-block;">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="request_accept" value="{{ request.id }}">
+                                <button type="submit" class="btn btn-success btn-sm" style="border-radius:50%; width:30px; height:30px;">
+                                    <span>&#10003;</span>
+                                </button>
+                            </form>
+                        </div>
+                        {% comment %} deny button {% endcomment %}
+                        <div style="display: inline-block;">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="request_deny" value="{{ request.id }}">
+                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius:50%; width:30px; height:30px;">
+                                    <span>&#x2717;</span>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}
+

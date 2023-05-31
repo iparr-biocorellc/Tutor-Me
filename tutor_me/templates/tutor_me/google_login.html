@@ -1,0 +1,70 @@
+{% comment %}  
+*  REFERENCES
+*  Title: Building a Landing Page Using HTML and CSS
+*  Author: Scaler
+*  Date: 4/29/2023
+*  URL: https://www.scaler.com/topics/landing-page-project-css/
+
+*  Title: Study group photo
+*  Author: Shutterstock
+*  Date: 4/29/2023
+*  URL: https://www.shutterstock.com/image-vector/happy-diverse-young-people-study-together-2071692923?irclickid=UrbwXZ3YExyNWD9X1bzm9xICUkAVkh0rEQlyyI0&irgwc=1&utm_campaign=TinEye&utm_content=108110&utm_medium=Affiliate&utm_source=77643&utm_term=
+
+{% endcomment %}
+
+
+
+{% load socialaccount %}
+{% block content %}
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'tutor_me/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
+</head>
+
+<!--    hero section starts  -->
+
+<section class="home" id="home ">
+    <div class="content">
+        
+      <!-- Tagline -->
+      <h3 class = "mainfont pb-2" style="font-weight:bold;"> Welcome to <span style="text-decoration:underline; text-decoration-style:dotted;"> TutorMe </span></h3>
+      <h4> Get personalized academic support from the best tutors around UVA! </h4>
+      <!--Description  -->
+      <br>
+      <p>
+        From Organic Chemistry to Operating Systems, TutorMe will help connect you with top-notch tutors who provide one-on-one support for any course at UVA so you can reach your academic goals. Our application is easy to use and allows you to schedule sessions that fit your schedule. Join TutorMe today!
+      </p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <button class="btn btn-info" style="font-size:18px;">
+                <a class="no-underline" style="color:white;padding:12px" href="{% provider_login_url 'google' %}">
+                    <i class="fab fa-google"></i>
+                    Sign Up or Log In
+                </a>
+            </button>
+        </div>
+    </form>
+
+    </div>
+      
+    <!-- Hero image -->
+
+    <div class="image">
+      <img src="{% static 'tutor_me/tutorphoto.png' %}" alt=" " />
+    </div>
+  </section>
+
+
+
+
+    {% endblock %}

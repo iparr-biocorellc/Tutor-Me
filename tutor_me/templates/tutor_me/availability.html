@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block content %}
+  <h5>Enter Your Availability</h5>
+  <form method="post">
+    {% csrf_token %}
+    <label for="start">Start Time:</label> {{ form.start }}<br>
+    <input type="datetime-local" id="start_time" name="start_time" required>
+  </br>
+    <label for="end">End Time:</label> {{ form.end }}<br>
+    <input type="datetime-local" id="end_time" name="end_time" required>
+    </br>
+  </br>
+
+    <button class = "btn btn-secondary" name="save_availability" type="submit">Save</button>
+  </form>
+
+</br>
+</br>
+
+{% endblock %}
+
